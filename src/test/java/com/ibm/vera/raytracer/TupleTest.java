@@ -2,7 +2,6 @@ package com.ibm.vera.raytracer;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.ibm.vera.raytracer.entities.Point;

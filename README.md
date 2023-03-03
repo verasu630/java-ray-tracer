@@ -6,7 +6,7 @@ The Ray Tracer Challenge is a language agnostic guide to a building a photoreali
 to communicate concepts. Here, I attempt to apply these concepts by implementing it in Java, with JUnit as the test engine.
 
 ## Status
-- [ ] Chapter 1
+- [x] Chapter 1
 - [ ] Chapter 2
 - [ ] Chapter 3
 - [ ] Chapter 4

@@ -14,6 +14,38 @@ public class Tuple {
 		this.w = w;
 	}
 	
+	public double getX() {
+		return x;
+	}
+
+	public void setX(double x) {
+		this.x = x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public void setY(double y) {
+		this.y = y;
+	}
+
+	public double getZ() {
+		return z;
+	}
+
+	public void setZ(double z) {
+		this.z = z;
+	}
+
+	public double getW() {
+		return w;
+	}
+
+	public void setW(double w) {
+		this.w = w;
+	}
+
 	public static Point point(double x, double y, double z) {
 		return new Point(x, y, z);
 	}
@@ -86,6 +118,11 @@ public class Tuple {
 		Tuple other = (Tuple) obj;
 		return Helper.equal(this.x, other.x) && Helper.equal(this.y, other.y)
 				&& Helper.equal(this.z, other.z) && Helper.equal(this.w, other.w);
+	}
+
+	@Override
+	public String toString() {
+		return "Tuple [x=" + x + ", y=" + y + ", z=" + z + ", w=" + w + "]";
 	}
 
 }
