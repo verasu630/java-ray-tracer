@@ -5,7 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.ibm.vera.raytracer.entities.Point;
 import com.ibm.vera.raytracer.entities.Tuple;
+import com.ibm.vera.raytracer.entities.Vector;
 import com.ibm.vera.raytracer.helpers.Helper;
 
 public class TupleTest {
@@ -13,14 +15,14 @@ public class TupleTest {
 
 	@Test
 	public void isPointTest() {
-		Tuple a = Tuple.point(4.3, -4.2, 3.1);
+		Tuple a = new Point(4.3, -4.2, 3.1);
 		assertTrue("a is a point", Tuple.isPoint(a));
 		assertFalse("a is not a vector", Tuple.isVector(a));
 	}
 	
 	@Test
 	public void isVectorTest() {
-		Tuple a = Tuple.vector(4.3, -4.2, 3.1);
+		Tuple a = new Vector(4.3, -4.2, 3.1);
 		assertFalse("a is not a point", Tuple.isPoint(a));
 		assertTrue("a is a vector", Tuple.isVector(a));
 	}
@@ -35,34 +37,34 @@ public class TupleTest {
 	
 	@Test
 	public void subtractTwoPointsTest() {
-		Tuple a1 = Tuple.point(3, 2, 1);
-		Tuple a2 = Tuple.point(5, 6, 7);
+		Tuple a1 = new Point(3, 2, 1);
+		Tuple a2 = new Point(5, 6, 7);
 		Tuple result = Tuple.subtract(a1, a2);
 		assertTrue(result.toString(), result.equals(Tuple.vector(-2, -4, -6)));
 	}
 	
 	@Test
 	public void subtractVectorFromPointsTest() {
-		Tuple a1 = Tuple.point(3, 2, 1);
-		Tuple a2 = Tuple.vector(5, 6, 7);
+		Tuple a1 = new Point(3, 2, 1);
+		Tuple a2 = new Vector(5, 6, 7);
 		Tuple result = Tuple.subtract(a1, a2);
-		assertTrue(result.toString(), result.equals(Tuple.point(-2, -4, -6)));
+		assertTrue(result.toString(), result.equals(new Point(-2, -4, -6)));
 	}
 	
 	@Test
 	public void subtractTwoVectorsTest() {
-		Tuple a1 = Tuple.vector(3, 2, 1);
-		Tuple a2 = Tuple.vector(5, 6, 7);
+		Tuple a1 = new Vector(3, 2, 1);
+		Tuple a2 = new Vector(5, 6, 7);
 		Tuple result = Tuple.subtract(a1, a2);
-		assertTrue(result.toString(), result.equals(Tuple.vector(-2, -4, -6)));
+		assertTrue(result.toString(), result.equals(new Vector(-2, -4, -6)));
 	}
 	
 	@Test
 	public void subtractVectorFromZeroTest() {
-		Tuple zero = Tuple.vector(0, 0, 0);
-		Tuple v = Tuple.vector(1, -2, 3);
+		Tuple zero = new Vector(0, 0, 0);
+		Tuple v = new Vector(1, -2, 3);
 		Tuple result = Tuple.subtract(zero, v);
-		assertTrue(result.toString(), result.equals(Tuple.vector(-1, 2, -3)));
+		assertTrue(result.toString(), result.equals(new Vector(-1, 2, -3)));
 	}
 	
 	@Test
@@ -95,70 +97,70 @@ public class TupleTest {
 	
 	@Test
 	public void magnitudeTest1() {
-		Double result = Tuple.magnitude(Tuple.vector(1, 0, 0));
+		Double result = Tuple.magnitude(new Vector(1, 0, 0));
 		assertTrue(result.toString(), Helper.equal(result, 1));
 	}
 
 	@Test
 	public void magnitudeTest2() {
-		Double result = Tuple.magnitude(Tuple.vector(0, 1, 0));
+		Double result = Tuple.magnitude(new Vector(0, 1, 0));
 		assertTrue(result.toString(), Helper.equal(result, 1));
 	}
 	
 	@Test
 	public void magnitudeTest3() {
-		Double result = Tuple.magnitude(Tuple.vector(0, 0, 1));
+		Double result = Tuple.magnitude(new Vector(0, 0, 1));
 		assertTrue(result.toString(), Helper.equal(result, 1));
 	}
 	
 	@Test
 	public void magnitudeTest4() {
-		Double result = Tuple.magnitude(Tuple.vector(1, 2, 3));
+		Double result = Tuple.magnitude(new Vector(1, 2, 3));
 		assertTrue(result.toString(), Helper.equal(result, Math.sqrt(14)));
 	}
 	
 	@Test
 	public void magnitudeTest5() {
-		Double result = Tuple.magnitude(Tuple.vector(-1, -2, -3));
+		Double result = Tuple.magnitude(new Vector(-1, -2, -3));
 		assertTrue(result.toString(), Helper.equal(result, Math.sqrt(14)));
 	}
 	
 	@Test
 	public void normaliseTest1() {
-		Tuple v = Tuple.vector(4, 0, 0);
+		Tuple v = new Vector(4, 0, 0);
 		Tuple result = Tuple.normalise(v);
-		assertTrue(result.equals(Tuple.vector(1, 0, 0)));
+		assertTrue(result.equals(new Vector(1, 0, 0)));
 	}
 	
 	@Test
 	public void normaliseTest2() {
-		Tuple v = Tuple.vector(1, 2, 3);
+		Tuple v = new Vector(1, 2, 3);
 		Tuple result = Tuple.normalise(v);
-		assertTrue(result.equals(Tuple.vector(1/Math.sqrt(14), 2/Math.sqrt(14), 3/Math.sqrt(14))));
+		assertTrue(result.equals(new Vector(1/Math.sqrt(14), 2/Math.sqrt(14), 3/Math.sqrt(14))));
 	}
 	
 	@Test
 	public void normaliseAndMagnitudeTest() {
-		Tuple v = Tuple.vector(1, 2, 3);
+		Tuple v = new Vector(1, 2, 3);
 		Tuple norm = Tuple.normalise(v);
 		assertTrue(Helper.equal(Tuple.magnitude(norm), 1));
 	}
 	
 	@Test
 	public void dotProductTest() {
-		Tuple v1 = Tuple.vector(1, 2, 3);
-		Tuple v2 = Tuple.vector(2, 3, 4);
+		Tuple v1 = new Vector(1, 2, 3);
+		Tuple v2 = new Vector(2, 3, 4);
 		Double result = Tuple.dot(v1, v2);
 		assertTrue(Helper.equal(result, 20));
 	}
 	
 	@Test
 	public void crossProductTest() {
-		Tuple a = Tuple.vector(1, 2, 3);
-		Tuple b = Tuple.vector(2, 3, 4);
+		Tuple a = new Vector(1, 2, 3);
+		Tuple b = new Vector(2, 3, 4);
 		Tuple resultA = Tuple.cross(a, b);
 		Tuple resultB = Tuple.cross(b, a);
-		assertTrue(resultA.equals(Tuple.vector(-1, 2, -1)));
-		assertTrue(resultB.equals(Tuple.vector(1, -2, 1)));
+		assertTrue(resultA.equals(new Vector(-1, 2, -1)));
+		assertTrue(resultB.equals(new Vector(1, -2, 1)));
 	}
 }

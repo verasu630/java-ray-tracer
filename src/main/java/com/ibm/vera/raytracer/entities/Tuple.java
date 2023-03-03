@@ -13,13 +13,13 @@ public class Tuple {
 		this.z = z;
 		this.w = w;
 	}
-
-	public static Tuple point(double x, double y, double z) {
-		return new Tuple(x, y, z, 1.0);
+	
+	public static Point point(double x, double y, double z) {
+		return new Point(x, y, z);
 	}
-
-	public static Tuple vector(double x, double y, double z) {
-		return new Tuple(x, y, z, 0.0);
+	
+	public static Vector vector(double x, double y, double z) {
+		return new Vector(x, y, z);
 	}
 
 	public static boolean isPoint(Tuple t) {
@@ -64,7 +64,7 @@ public class Tuple {
 	}
 
 	public static Tuple cross(Tuple a, Tuple b) {
-		return Tuple.vector(
+		return new Vector(
 				a.y * b.z - a.z * b.y,
 				a.z * b.x - a.x * b.z,
 				a.x * b.y - a.y * b.x);
@@ -81,7 +81,7 @@ public class Tuple {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (getClass() != Vector.class && getClass() != Point.class && getClass() != Tuple.class && getClass() != obj.getClass())
 			return false;
 		Tuple other = (Tuple) obj;
 		return Helper.equal(this.x, other.x) && Helper.equal(this.y, other.y)
