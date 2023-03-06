@@ -7,7 +7,7 @@ to communicate concepts. Here, I attempt to apply these concepts by implementing
 
 ## Status
 - [x] Chapter 1
-- [ ] Chapter 2
+- [x] Chapter 2
 - [ ] Chapter 3
 - [ ] Chapter 4
 - [ ] Chapter 5

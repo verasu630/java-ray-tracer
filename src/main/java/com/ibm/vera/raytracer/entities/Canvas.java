@@ -28,7 +28,9 @@ public class Canvas {
 	}
 
 	public void writePixel(int col, int row, Colour colour) {
-		pixels[row][col] = colour;		
+		if(row <= height && col <= width) {
+			pixels[row][col] = colour;
+		}		
 	}
 	
 	public Colour pixelAt (int col, int row) {
