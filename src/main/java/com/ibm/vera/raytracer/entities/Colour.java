@@ -15,4 +15,9 @@ public class Colour extends Tuple {
 		
 		return result;
 	}
+
+	@Override
+	public String toString() {
+		return super.getX() + " " + super.getY() + " " + super.getZ() + "\n";
+	}
 }
